@@ -7,6 +7,10 @@
     font-size: 100%;
 }
 
+input {
+    max-width: 100%;
+}
+
 button {
     padding: 1rem;
     font-size: 1.5rem;

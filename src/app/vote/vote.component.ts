@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { GorillaPollService } from '../gorilla-poll.service';
+import { Poll } from '../model/Poll';
 
 @Component({
   selector: 'app-vote',
@@ -8,16 +10,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class VoteComponent implements OnInit {
 
-  id: Number;
-  question: String = "What is the answer?";
+  id: String;
   selected;
-  choices: String[] = [
-    "choice0",
-    "choice1",
-    "choice2",
-  ];
+  poll: Poll;
 
-  constructor(route: ActivatedRoute) { 
+  constructor(route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -26,6 +23,14 @@ export class VoteComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getPoll();
+  }
+
+  getPoll(): void {
+    this.gorillaPoll.getPoll(this.id)
+      .subscribe(poll => {
+        this.poll = poll;
+      });
   }
 
   select(choice: Number) {
@@ -34,7 +39,7 @@ export class VoteComponent implements OnInit {
   }
 
   submit() {
-    console.log(`submitting vote ${this.choices[this.selected]}`);
+    console.log(this.poll.choices[this.selected].value);
     this.selected = '';
   }
 }

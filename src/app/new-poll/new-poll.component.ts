@@ -30,6 +30,10 @@ export class NewPollComponent implements OnInit {
     this.choices.push('');
   }
 
+  removeChoice() {
+    this.choices.pop();
+  }
+
   trackByFn(index: any, item: any){
     return index;
   } 

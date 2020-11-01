@@ -1,11 +1,11 @@
 <main class="container">
-    <div class="choice-question">{{question}}</div>
+    <div class="choice-question">{{poll.question}}</div>
     <ul class="choice-list">
         <li class="choice-item" 
             [ngClass]="selected === i ? 'choice-selected' : ''"
-            *ngFor="let choice of choices; let i = index" 
+            *ngFor="let choice of poll.choices; let i = index" 
             (click) = "select(i)">
-            <span class="choice-text">{{choice}}</span>
+            <span class="choice-text">{{choice.value}}</span>
         </li>
     </ul>
     <button 

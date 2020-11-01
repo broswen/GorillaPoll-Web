@@ -74,6 +74,7 @@ button {
 }
 
 .choice-amount {
+    
     font-size: 2rem;
     justify-self: flex-end;
 }

@@ -7,9 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPollComponent implements OnInit {
 
+  question: String = '';
+
+  choices: String[] = [
+    '',
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  submit() {
+    const poll = {
+      question: this.question,
+      choices: this.choices
+    };
+    console.log(poll);
+  }
+
+  addChoice() {
+    this.choices.push('');
+  }
+
+  trackByFn(index: any, item: any){
+    return index;
+  } 
 
 }

@@ -1,4 +1,17 @@
 <main class="container">
-    <h1>New Poll</h1>
-    <button>New Choice</button>
+    <input type="text" 
+        class="choice-question" 
+        placeholder="prompt..."
+        [(ngModel)]="question">
+    <ul class="choice-list">
+        <li class="choice-item" 
+            *ngFor="let choice of choices; let i = index; trackBy:trackByFn">
+            <input type="text" 
+                class="choice-text" 
+                placeholder="option"
+                [(ngModel)]="choices[i]">
+        </li>
+    </ul>
+    <button (click) ="addChoice()">+</button>
+    <button (click) ="submit()">Submit</button>
 </main>

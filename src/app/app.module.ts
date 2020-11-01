@@ -7,6 +7,7 @@ import { NewPollComponent } from './new-poll/new-poll.component';
 import { PollResultsComponent } from './poll-results/poll-results.component';
 import { VoteComponent } from './vote/vote.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HomeComponent } from './home/home.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule
   ],
   providers: [],

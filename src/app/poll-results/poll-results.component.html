@@ -1,0 +1,10 @@
+<main class="container">
+    <div class="choice-question">{{question}}</div>
+    <ul class="choice-list">
+        <li class="choice-item"
+            *ngFor="let choice of results">
+            <span class="choice-text">{{choice.value}}</span>
+            <span class="choice-amount">{{choice.votes}}</span>
+        </li>
+    </ul>
+</main>

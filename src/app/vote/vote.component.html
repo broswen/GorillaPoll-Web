@@ -1,0 +1,13 @@
+<main class="container">
+    <div class="choice-question">{{question}}</div>
+    <ul class="choice-list">
+        <li class="choice-item" 
+            [ngClass]="selected === i ? 'choice-selected' : ''"
+            *ngFor="let choice of choices; let i = index" 
+            (click) = "select(i)">
+            <span class="choice-text">{{choice}}</span>
+        </li>
+    </ul>
+    <button 
+        (click) ="submit()">Submit</button>
+</main>

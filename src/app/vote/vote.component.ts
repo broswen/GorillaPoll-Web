@@ -14,7 +14,7 @@ export class VoteComponent implements OnInit {
   selected;
   poll: Poll;
 
-  constructor(route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
+  constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -40,6 +40,20 @@ export class VoteComponent implements OnInit {
 
   submit() {
     console.log(this.poll.choices[this.selected].value);
+    this.gorillaPoll.addVote(this.poll.choices[this.selected].value)
+      .subscribe(result => {
+        switch (result) {
+          case 200:
+            this.router.navigate(['/results', this.id]);
+            break;
+          case 400:
+            console.log('400 error');
+            break;
+          case 500:
+            console.log('500 error');
+            break;
+        }
+      });
     this.selected = '';
   }
 }

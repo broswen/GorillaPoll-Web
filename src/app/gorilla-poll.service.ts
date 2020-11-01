@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Poll } from './model/Poll';
 
@@ -7,7 +8,7 @@ import { Poll } from './model/Poll';
 })
 export class GorillaPollService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getPoll(id: String): Observable<Poll>{
     return of({
@@ -21,8 +22,8 @@ export class GorillaPollService {
     });
   }
 
-  postPoll(poll) {
-    return 200;
+  postPoll(poll): Observable<String> {
+    return of("123");
   }
 
   getPollResults(id: String): Observable<Poll>{
@@ -37,13 +38,13 @@ export class GorillaPollService {
     });
   }
 
-  Vote(vote): Number {
+  addVote(vote): Observable<Number> {
     let rand = Math.random()*3;
-    if (rand < 1) {
-      return 500;
-    } if (rand < 2) {
-      return 400;
+    if (rand < 0.5) {
+      return of(500);
+    } if (rand < 1) {
+      return of(400);
     } 
-    return 200;
+    return of(200);
   }
 }

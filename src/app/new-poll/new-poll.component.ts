@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import { GorillaPollService } from '../gorilla-poll.service';
+import { Poll } from '../model/Poll';
 
 @Component({
   selector: 'app-new-poll',
@@ -7,13 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewPollComponent implements OnInit {
 
+  poll: Poll;
   question: String = '';
-
   choices: String[] = [
     '',
   ];
 
-  constructor() { }
+  constructor(private router: Router, private gorillaPoll: GorillaPollService) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +27,10 @@ export class NewPollComponent implements OnInit {
       choices: this.choices
     };
     console.log(poll);
+    this.gorillaPoll.postPoll(poll).subscribe(id => {
+      console.log(`id: ${id}`)
+      this.router.navigate(['/results', id]);
+    });
   }
 
   addChoice() {

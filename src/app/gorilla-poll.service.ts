@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { Poll } from './model/Poll';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of , throwError} from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
+import { NewPoll, Poll, VoteResponse } from './model/Poll';
+import { Endpoint } from './Endpoint';
 
 @Injectable({
   providedIn: 'root'
@@ -10,41 +12,33 @@ export class GorillaPollService {
 
   constructor(private http: HttpClient) { }
 
-  getPoll(id: String): Observable<Poll>{
-    return of({
-      id: "123",
-      question: "Is this the question?",
-      choices: [
-        {value: "yes", votes: 2},
-        {value: "no", votes: 4},
-        {value: "maybe", votes: 5},
-      ]
-    });
+  private handleError(error: HttpErrorResponse) {
+  if (error.error instanceof ErrorEvent) {
+    // A client-side or network error occurred. Handle it accordingly.
+    console.error('An error occurred:', error.error.message);
+  } else {
+    // The backend returned an unsuccessful response code.
+    // The response body may contain clues as to what went wrong.
+    console.error(
+      `Backend returned code ${error.status}, ` +
+      `body was: ${error.error}`);
+  }
+  // Return an observable with a user-facing error message.
+  return throwError(
+    'Something bad happened; please try again later.');
+}
+
+  getPoll(id: String) {
+    return this.http.get<Poll>(`${Endpoint.endpoint}/results/${id}`);
   }
 
-  postPoll(poll): Observable<String> {
-    return of("123");
+  postPoll(poll) {
+    return this.http.post<NewPoll>(`${Endpoint.endpoint}/poll`, poll);
   }
 
-  getPollResults(id: String): Observable<Poll>{
-    return of({
-      id: "123",
-      question: "Is this the question?",
-      choices: [
-        {value: "yes", votes: 2},
-        {value: "no", votes: 4},
-        {value: "maybe", votes: 5},
-      ]
-    });
-  }
-
-  addVote(vote): Observable<Number> {
-    let rand = Math.random()*3;
-    if (rand < 0.5) {
-      return of(500);
-    } if (rand < 1) {
-      return of(400);
-    } 
-    return of(200);
+  addVote(vote, id) {
+    return this.http.post<VoteResponse>(
+      `${Endpoint.endpoint}/poll/${id}`,
+      vote);
   }
 }

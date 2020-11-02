@@ -13,9 +13,9 @@ import { Poll } from '../model/Poll';
 export class PollResultsComponent implements OnInit {
 
   id: String;
-  poll: Poll;
+  poll: Poll = {id: '', question: '', choices: []};
 
-  constructor(route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
+  constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {
       this.id = params['id'];
     });

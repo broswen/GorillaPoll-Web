@@ -1,4 +1,5 @@
 <main class="container">
+    <div *ngIf="error" class="choice-error">{{error}}</div>
     <input type="text" 
         class="choice-question" 
         placeholder="prompt..."

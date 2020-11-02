@@ -10,6 +10,7 @@ import { Poll } from '../model/Poll';
 })
 export class NewPollComponent implements OnInit {
 
+  error: String;
   poll: Poll;
   question: String = '';
   choices: String[] = [
@@ -27,9 +28,13 @@ export class NewPollComponent implements OnInit {
       choices: this.choices
     };
     console.log(poll);
-    this.gorillaPoll.postPoll(poll).subscribe(id => {
-      console.log(`id: ${id}`)
-      this.router.navigate(['/results', id]);
+    this.gorillaPoll.postPoll(poll).subscribe(newpoll => {
+      console.log(`id: ${newpoll.link}`)
+      this.router.navigate(['/results', newpoll.link]);
+    },
+      error => {
+        console.error(error);
+        this.error = error.error.message;
     });
   }
 

@@ -11,8 +11,9 @@ import { Poll } from '../model/Poll';
 export class VoteComponent implements OnInit {
 
   id: String;
+  error: String;
   selected;
-  poll: Poll;
+  poll: Poll = {id: '', question: '', choices: []};
 
   constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {
@@ -39,20 +40,16 @@ export class VoteComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.poll.choices[this.selected].value);
-    this.gorillaPoll.addVote(this.poll.choices[this.selected].value)
+    const vote = {choice: this.poll.choices[this.selected].value};
+    console.log(vote);
+
+    this.gorillaPoll.addVote(vote, this.id)
       .subscribe(result => {
-        switch (result) {
-          case 200:
-            this.router.navigate(['/results', this.id]);
-            break;
-          case 400:
-            console.log('400 error');
-            break;
-          case 500:
-            console.log('500 error');
-            break;
-        }
+          this.router.navigate(['/results', this.id]);
+      },
+        error => {
+          console.error(error);
+          this.error = error.error.message;
       });
     this.selected = '';
   }

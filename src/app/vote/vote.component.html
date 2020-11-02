@@ -1,4 +1,5 @@
 <main class="container">
+    <div *ngIf="error" class="choice-error">{{error}}</div>
     <div class="choice-question">{{poll.question}}</div>
     <ul class="choice-list">
         <li class="choice-item" 
@@ -10,4 +11,6 @@
     </ul>
     <button 
         (click) ="submit()">Submit</button>
+
+    <div [routerLink]="['/results', poll.id]" class="">ID: {{poll.id}}</div>
 </main>

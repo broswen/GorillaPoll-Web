@@ -40,7 +40,7 @@ export class VoteComponent implements OnInit {
   }
 
   submit() {
-    const vote = {choice: this.poll.choices[this.selected].value};
+    const vote = {choice: this.poll.choices[this.selected].name};
     console.log(vote);
 
     this.gorillaPoll.addVote(vote, this.id)

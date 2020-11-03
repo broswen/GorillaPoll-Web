@@ -3,9 +3,17 @@
     <ul class="choice-list">
         <li class="choice-item"
             *ngFor="let choice of poll.choices">
-            <span class="choice-text">{{choice.value}}</span>
-            <span class="choice-amount">{{choice.votes}}</span>
+            <span class="choice-text">{{choice.name}}</span>
+            <span class="choice-amount">{{choice.value}} votes</span>
         </li>
     </ul>
     <div [routerLink]="['/poll', poll.id]" class="">ID: {{poll.id}}</div>
+
+    <ngx-charts-pie-chart
+      [results]="poll.choices"
+      [labels]="false"
+      [legend]="true"
+      [scheme]="scheme"
+    >
+    </ngx-charts-pie-chart>
 </main>

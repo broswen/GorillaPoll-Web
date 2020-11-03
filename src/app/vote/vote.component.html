@@ -6,7 +6,7 @@
             [ngClass]="selected === i ? 'choice-selected' : ''"
             *ngFor="let choice of poll.choices; let i = index" 
             (click) = "select(i)">
-            <span class="choice-text">{{choice.value}}</span>
+            <span class="choice-text">{{choice.name}}</span>
         </li>
     </ul>
     <button 

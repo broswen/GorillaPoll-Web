@@ -13,6 +13,9 @@ import { Poll } from '../model/Poll';
 export class PollResultsComponent implements OnInit {
 
   id: String;
+  scheme = {
+    domain: ['#00FF00', '#00FFFF', '#A10A28', '#00CED1', '#064DE0']
+  };
   poll: Poll = {id: '', question: '', choices: []};
 
   constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 

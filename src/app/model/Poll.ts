@@ -6,8 +6,8 @@ export interface Poll {
 }
 
 export interface Choice {
-    value: String;
-    votes: Number;
+    name: String;
+    value: Number;
 }
 
 export interface NewPoll {

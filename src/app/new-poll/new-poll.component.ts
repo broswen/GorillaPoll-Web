@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { GorillaPollService } from '../gorilla-poll.service';
 import { Poll } from '../model/Poll';
 
@@ -11,13 +11,14 @@ import { Poll } from '../model/Poll';
 export class NewPollComponent implements OnInit {
 
   error: String;
+  link: String;
   poll: Poll;
   question: String = '';
   choices: String[] = [
     '',
   ];
 
-  constructor(private router: Router, private gorillaPoll: GorillaPollService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private gorillaPoll: GorillaPollService) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +31,8 @@ export class NewPollComponent implements OnInit {
     console.log(poll);
     this.gorillaPoll.postPoll(poll).subscribe(newpoll => {
       console.log(`id: ${newpoll.link}`)
-      this.router.navigate(['/results', newpoll.link]);
+      this.error = undefined;
+      this.link = newpoll.link;
     },
       error => {
         console.error(error);

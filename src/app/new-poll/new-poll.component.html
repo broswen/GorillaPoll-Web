@@ -1,5 +1,8 @@
 <main class="container">
-    <div *ngIf="error" class="choice-error">{{error}}</div>
+    <div *ngIf="error" class="alert-bad">{{error}}</div>
+    <div *ngIf="link" 
+      class="alert-good"
+      [routerLink]="['/poll', link]">Click here to go to your new poll.</div>
     <input type="text" 
         class="choice-question" 
         placeholder="prompt..."

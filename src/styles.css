@@ -84,9 +84,16 @@ button {
     justify-self: flex-end;
 }
 
-.choice-error {
+.alert-bad{
   font-size: 2rem;
   margin: 1rem auto 0rem;
   padding: 1rem;
   background-color: rgba(255, 0, 0, 0.3);
+}
+
+.alert-good{
+  font-size: 2rem;
+  margin: 1rem auto 0rem;
+  padding: 1rem;
+  background-color: rgba(0, 255, 0, 0.3);
 }

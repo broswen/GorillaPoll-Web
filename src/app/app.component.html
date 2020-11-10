@@ -5,11 +5,24 @@
                 <span class="nav-text">Home</span>
             </a>
         </li>
-        <li routerLink="/new" class="nav-item">
-            <a class="nav-link">
-                <span class="nav-text">New Poll</span>
-            </a>
+        <ng-container *ngIf="auth.isAuthenticated$ | async">
+          <li routerLink="/new" class="nav-item">
+              <a class="nav-link">
+                  <span class="nav-text">New Poll</span>
+              </a>
+          </li>
+
+          <li routerLink="/profile" class="nav-item">
+              <a class="nav-link">
+                  <span class="nav-text">My Polls</span>
+              </a>
+          </li>
+        </ng-container>
+        
+        <li class="nav-item">
+          <app-auth-button></app-auth-button>
         </li>
+
     </ul>
 </nav>
 <router-outlet></router-outlet>

@@ -13,7 +13,7 @@ export class VoteComponent implements OnInit {
   id: String;
   error: String;
   selected;
-  poll: Poll = {id: '', question: '', choices: []};
+  poll: Poll = {id: '', uid: '', question: '', choices: []};
 
   constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {

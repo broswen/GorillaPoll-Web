@@ -1,5 +1,6 @@
 export interface Poll {
     id: String;
+    uid: String;
     question: String;
     choices: Choice[];
 

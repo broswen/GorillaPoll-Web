@@ -16,7 +16,7 @@ export class PollResultsComponent implements OnInit {
   scheme = {
     domain: ['#00FF00', '#00FFFF', '#A10A28', '#00CED1', '#064DE0']
   };
-  poll: Poll = {id: '', question: '', choices: []};
+  poll: Poll = {id: '', uid: '', question: '', choices: []};
 
   constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
     route.params.subscribe(params => {

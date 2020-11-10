@@ -32,6 +32,10 @@ export class GorillaPollService {
     return this.http.get<Poll>(`${Endpoint.endpoint}/results/${id}`);
   }
 
+  getUserPolls(uid: String) {
+    return this.http.get<Poll[]>(`${Endpoint.endpoint}/user/${uid}`);
+  }
+
   postPoll(poll) {
     return this.http.post<NewPoll>(`${Endpoint.endpoint}/poll`, poll);
   }

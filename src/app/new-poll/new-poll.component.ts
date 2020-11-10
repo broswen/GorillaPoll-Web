@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { GorillaPollService } from '../gorilla-poll.service';
 import { Poll } from '../model/Poll';
 
@@ -11,21 +12,31 @@ import { Poll } from '../model/Poll';
 export class NewPollComponent implements OnInit {
 
   error: String;
+  profileJSON: Object;
   link: String;
   poll: Poll;
+  uid: String;
   question: String = '';
   choices: String[] = [
     '',
   ];
 
-  constructor(private route: ActivatedRoute, private router: Router, private gorillaPoll: GorillaPollService) { }
+  constructor(private route: ActivatedRoute, 
+    private router: Router, 
+    private gorillaPoll: GorillaPollService,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.user$.subscribe(user => {
+      console.log(user);
+      this.uid = user['email'];
+    })
   }
 
   submit() {
     const poll = {
       question: this.question,
+      uid: this.uid,
       choices: this.choices
     };
     console.log(poll);

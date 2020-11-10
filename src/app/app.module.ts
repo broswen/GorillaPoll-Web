@@ -10,6 +10,9 @@ import { VoteComponent } from './vote/vote.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { AuthModule } from '@auth0/auth0-angular';
+import { AuthButtonComponent } from './auth-button/auth-button.component';
+import { MyPollsComponent } from './my-polls/my-polls.component';
 
 @NgModule({
   declarations: [
@@ -17,11 +20,17 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     NewPollComponent,
     PollResultsComponent,
     VoteComponent,
-    HomeComponent
+    HomeComponent,
+    AuthButtonComponent,
+    MyPollsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    AuthModule.forRoot({
+      domain: 'dev-c84peibk.us.auth0.com',
+      clientId: 'tOh8KRvDnJY9UZBwEzCXgUd5dWzSDHIG',
+    }),
     FormsModule,
     AppRoutingModule,
     NgxChartsModule,

@@ -1,0 +1,12 @@
+<main class="container">
+  <div class="choice-item"
+    *ngFor="let poll of polls"
+    [routerLink]="['/results', poll.id]">
+    <span class="choice-text">
+      {{poll.question}}
+    </span>
+    <span class="">
+      {{poll.id}}
+    </span>
+  </div>
+</main>

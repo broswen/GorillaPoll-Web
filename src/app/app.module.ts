@@ -13,6 +13,13 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AuthModule } from '@auth0/auth0-angular';
 import { AuthButtonComponent } from './auth-button/auth-button.component';
 import { MyPollsComponent } from './my-polls/my-polls.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -23,6 +30,7 @@ import { MyPollsComponent } from './my-polls/my-polls.component';
     HomeComponent,
     AuthButtonComponent,
     MyPollsComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -34,7 +42,15 @@ import { MyPollsComponent } from './my-polls/my-polls.component';
     FormsModule,
     AppRoutingModule,
     NgxChartsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatButtonModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatListModule,
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

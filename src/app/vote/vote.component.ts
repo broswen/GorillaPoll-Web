@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { GorillaPollService } from '../gorilla-poll.service';
 import { Poll } from '../model/Poll';
@@ -10,12 +11,15 @@ import { Poll } from '../model/Poll';
 })
 export class VoteComponent implements OnInit {
 
-  id: String;
-  error: String;
+  id: string;
+  error: string;
   selected;
   poll: Poll = {id: '', uid: '', question: '', choices: []};
 
-  constructor(private router: Router, route: ActivatedRoute, private gorillaPoll: GorillaPollService) { 
+  constructor(private router: Router, 
+    private route: ActivatedRoute,
+    private gorillaPoll: GorillaPollService,
+    private snackbar: MatSnackBar) { 
     route.params.subscribe(params => {
       this.id = params['id'];
     });
@@ -40,6 +44,8 @@ export class VoteComponent implements OnInit {
   }
 
   submit() {
+    if (this.selected === undefined) return;
+
     const vote = {choice: this.poll.choices[this.selected].name};
     console.log(vote);
 
@@ -50,6 +56,7 @@ export class VoteComponent implements OnInit {
         error => {
           console.error(error);
           this.error = error.error.message;
+          this.snackbar.open(this.error, 'OK', {duration:3000} );
       });
     this.selected = '';
   }

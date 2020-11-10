@@ -1,14 +1,21 @@
 <main class="container">
-    <div class="choice-question">{{poll.question}}</div>
-    <ul class="choice-list">
-        <li class="choice-item"
-            *ngFor="let choice of poll.choices">
-            <span class="choice-text">{{choice.name}}</span>
-            <span class="choice-amount">{{choice.value}} votes</span>
-        </li>
-    </ul>
-    <div [routerLink]="['/poll', poll.id]" class="">ID: {{poll.id}}</div>
 
+  <mat-card>
+    <mat-card-content>
+      <h2 class="choice-question">{{poll.question}}</h2>
+      <mat-list role="list">
+          <mat-list-item role="listitem" class="list-item" 
+              *ngFor="let choice of poll.choices; let i = index" >
+              <span class="choice-text">{{choice.name}}</span>
+              <span class="choice-text">{{choice.value}} votes</span>
+          </mat-list-item>
+      </mat-list>
+
+      <div [routerLink]="['/poll', poll.id]" class="">ID: {{poll.id}}</div>
+
+    </mat-card-content>
+  </mat-card>
+   
     <ngx-charts-pie-chart
       [results]="poll.choices"
       [labels]="false"

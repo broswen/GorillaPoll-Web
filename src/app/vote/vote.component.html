@@ -1,16 +1,22 @@
 <main class="container">
-    <div *ngIf="error" class="alert-bad">{{error}}</div>
-    <div class="choice-question">{{poll.question}}</div>
-    <ul class="choice-list">
-        <li class="choice-item" 
-            [ngClass]="selected === i ? 'choice-selected' : ''"
-            *ngFor="let choice of poll.choices; let i = index" 
-            (click) = "select(i)">
-            <span class="choice-text">{{choice.name}}</span>
-        </li>
-    </ul>
-    <button 
+  <mat-card>
+    <mat-card-content>
+      <h2 class="choice-question">{{poll.question}}</h2>
+      <mat-list role="list">
+          <mat-list-item role="listitem" class="list-item" 
+              [ngClass]="selected === i ? 'list-item-selected' : ''"
+              *ngFor="let choice of poll.choices; let i = index" 
+              (click) = "select(i)">
+              <span class="choice-text">{{choice.name}}</span>
+          </mat-list-item>
+      </mat-list>
+      <button mat-stroked-button 
+        style="margin: 1rem 1rem;"
         (click) ="submit()">Submit</button>
 
-    <div [routerLink]="['/results', poll.id]" class="">ID: {{poll.id}}</div>
+      <div [routerLink]="['/results', poll.id]" class="">ID: {{poll.id}}</div>
+
+    </mat-card-content>
+  </mat-card>
+    
 </main>

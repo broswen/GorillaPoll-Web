@@ -1,4 +1,24 @@
-<nav class="navbar">
+<mat-toolbar>
+  <button mat-button
+    [routerLink]="['/']">
+    Home
+  </button>
+
+  <ng-container *ngIf="auth.isAuthenticated$ | async">
+    <button mat-button routerLink="/new" >
+      New Poll
+    </button>
+
+    <button mat-button routerLink="/profile" >
+      My Polls
+    </button>
+  </ng-container>
+  <span class="spacer"></span>
+
+  <app-auth-button></app-auth-button>
+</mat-toolbar>
+
+<!-- <nav class="navbar">
     <ul class="nav-list">
         <li routerLink="" class="nav-item">
             <a class="nav-link">
@@ -24,5 +44,5 @@
         </li>
 
     </ul>
-</nav>
+</nav> -->
 <router-outlet></router-outlet>

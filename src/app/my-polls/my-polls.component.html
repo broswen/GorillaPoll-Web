@@ -1,12 +1,18 @@
 <main class="container">
-  <div class="choice-item"
-    *ngFor="let poll of polls"
-    [routerLink]="['/results', poll.id]">
-    <span class="choice-text">
-      {{poll.question}}
-    </span>
-    <span class="">
-      {{poll.id}}
-    </span>
-  </div>
+  <mat-card>
+    <mat-card-content>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem"
+          class="list-item"
+          *ngFor="let poll of polls"
+          [routerLink]="['/results', poll.id]">
+
+          <span>{{poll.date | date:'short'}}</span>
+          <span>{{poll.id}}</span>
+          <span>{{poll.question}}</span>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </main>

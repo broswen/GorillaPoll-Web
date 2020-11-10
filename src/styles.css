@@ -4,43 +4,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Itim', cursive;
-    font-size: 100%;
-}
-
-input {
-    width: 100%;
-    max-width: 100%;
-}
-
-button {
-    padding: 1rem;
-    font-size: 1.5rem;
-}
-
-.navbar {
-    display: flex;
-    background-color: green;
-    box-shadow: 0px 1px 3px black;
-}
-
-.nav-list {
-    display: flex;
-    list-style: none;
-}
-
-.nav-item {
-    padding: 1rem 1rem;
-    color: white;
-    transition: background-color 300ms ease, color 300ms ease;
-}
-
-.nav-item:hover {
-    color: black;
-    background-color: greenyellow;
-}
-
-.nav-link {
-    text-decoration: none;
+    /* font-size: 100%; */
 }
 
 .container {
@@ -48,52 +12,23 @@ button {
     margin: 2rem auto;
 }
 
-.choice-question {
-    font-size: 3rem;
-    margin: 1rem auto 0rem;
+.list-item {
+  transition: background-color 300ms ease, border-left 300ms ease;
 }
 
-.choice-list {
-    list-style: none;
-    margin: 2rem auto 2rem;
+.list-item span {
+  display: inline-block;
+  margin: 0rem 1rem;
 }
 
-.choice-item {
-    display: flex;
-    padding: 1rem;
-    background-color: gainsboro;
-    transition: background-color 300ms ease;
+.list-item-selected {
+  background-color: #5f5f5f;
+  border-left: 6px solid #909090;
 }
 
-.choice-item:hover {
-    background-color: rgb(238, 238, 238);
+.list-item:hover {
+  background-color: #5f5f5f;
 }
 
-.choice-selected {
-    background-color: rgb(132, 236, 141);
-}
-
-.choice-text {
-    flex-grow: 1;
-    font-size: 2rem;
-}
-
-.choice-amount {
-    
-    font-size: 2rem;
-    justify-self: flex-end;
-}
-
-.alert-bad{
-  font-size: 2rem;
-  margin: 1rem auto 0rem;
-  padding: 1rem;
-  background-color: rgba(255, 0, 0, 0.3);
-}
-
-.alert-good{
-  font-size: 2rem;
-  margin: 1rem auto 0rem;
-  padding: 1rem;
-  background-color: rgba(0, 255, 0, 0.3);
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

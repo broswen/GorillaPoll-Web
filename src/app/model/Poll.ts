@@ -1,20 +1,20 @@
 export interface Poll {
-    id: String;
-    uid: String;
-    question: String;
+    id: string;
+    uid: string;
+    question: string;
     choices: Choice[];
 
 }
 
 export interface Choice {
-    name: String;
-    value: Number;
+    name: string;
+    value: number;
 }
 
 export interface NewPoll {
-  link: String;
+  link: string;
 }
 
 export interface VoteResponse {
-  message: String;
+  message: string;
 }

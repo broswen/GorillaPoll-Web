@@ -10,6 +10,8 @@ import { Poll } from '../model/Poll';
 })
 export class MyPollsComponent implements OnInit {
 
+  displayedColumns: string[] = ['date', 'id', 'question'];
+
   polls: Poll[];
 
   constructor(private gorillaPoll: GorillaPollService, private auth: AuthService) { }

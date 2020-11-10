@@ -1,22 +1,25 @@
 <main class="container">
-    <div *ngIf="error" class="alert-bad">{{error}}</div>
-    <div *ngIf="link" 
-      class="alert-good"
-      [routerLink]="['/poll', link]">Click here to go to your new poll.</div>
-    <input type="text" 
-        class="choice-question" 
-        placeholder="prompt..."
-        [(ngModel)]="question">
-    <ul class="choice-list">
-        <li class="choice-item" 
-            *ngFor="let choice of choices; let i = index; trackBy:trackByFn">
-            <input type="text" 
-                class="choice-text" 
-                placeholder="option"
-                [(ngModel)]="choices[i]">
-        </li>
-    </ul>
-    <button (click) ="addChoice()">+</button>
-    <button (click) ="removeChoice()">-</button>
-    <button (click) ="submit()">Submit</button>
+  <mat-card>
+    <mat-card-content style="display: flex; flex-direction: column;">
+      <mat-form-field>
+        <mat-label>Question</mat-label>
+        <input matInput placeholder="question" value="" [(ngModel)]="question">
+
+  
+      </mat-form-field>
+
+      <mat-form-field
+        *ngFor="let choice of choices; let i = index; trackBy:trackByFn">
+        <input matInput type="text" 
+          class="choice-text" 
+          placeholder="option"
+          [(ngModel)]="choices[i]">
+      </mat-form-field>
+      <div>
+        <button mat-stroked-button (click) ="addChoice()">+</button>
+        <button mat-stroked-button (click) ="removeChoice()">-</button>
+        <button mat-raised-button (click) ="submit()">Submit</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </main>
